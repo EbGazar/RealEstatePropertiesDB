@@ -84,4 +84,52 @@ To create the ERD models for the above case studies, we will follow these steps:
   * Owner_ID (Primary Key): Unique identification number of the owner.
   * Owner_Name: Name of the owner.
 
+ ##	<div align="center"> Entity Relationship Diagram </div>
+<p align="center"> <img src="https://github.com/EbGazar/RealEstatePropertiesDB/assets/62806731/45d4a89e-8556-4012-8696-427b9c338fbd"  alt="animated" /></p>
 
+
+## Create SQL Tables:
+
+```sql
+CREATE TABLE SalesOffice (
+  Office_Number INT PRIMARY KEY,
+  Location VARCHAR(255)
+);
+
+CREATE TABLE Employee (
+  Employee_ID INT PRIMARY KEY,
+  Employee_Name VARCHAR(255),
+);
+
+CREATE TABLE Property (
+  Property_ID INT PRIMARY KEY,
+  Location VARCHAR(255),
+);
+
+CREATE TABLE Owner (
+  Owner_ID INT PRIMARY KEY,
+  Owner_Name VARCHAR(255)
+);
+
+```
+
+
+## SQL Queries
+
+Here's an example of queries on the database.
+
+
+```sql
+SELECT Property.Property_ID, Property.Location
+FROM Property
+INNER JOIN SalesOffice ON Property.Office_Number = SalesOffice.Office_Number
+WHERE SalesOffice.Location = 'New York';
+```
+
+```sql
+SELECT SalesOffice.Office_Number, SalesOffice.Location, Employee.Employee_ID, Employee.Employee_Name
+FROM SalesOffice
+LEFT JOIN Employee ON SalesOffice.Office_Number = Employee.Office_Number;
+```
+
+and that's it :)
